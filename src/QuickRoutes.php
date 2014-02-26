@@ -110,7 +110,7 @@ class QuickRoutes {
     {
         return ! empty($default)
                ? $default
-               : $app['config']->get('quickroutes::default');
+               : $this->app['config']->get('quickroutes::default');
     }
 
     /**

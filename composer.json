@@ -1,7 +1,7 @@
 {
     "name": "suitetea/quick-routes",
     "description": "QuickRoutes simplifies and shortens mundane and repeated declaration of routes and controller methods.",
-    "version": "0.3.0",
+    "version": "0.5.0",
     "license": "MIT",
     "require": {
         "php": ">=5.3.0",

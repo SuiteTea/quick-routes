@@ -87,6 +87,18 @@ Via Composer
 }
 ```
 
+Run update from Composer:
+
+```
+composer update
+```
+
+Add the service provider to the `app/config/app.php` providers array.
+
+```
+'SuiteTea\QuickRoutes\QuickRoutesServiceProvider',
+```
+
 The default routes array should be in the following format:
 
 ```

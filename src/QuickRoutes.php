@@ -15,6 +15,12 @@ class QuickRoutes {
     protected $router;
 
     /**
+     * Default Routes
+     * @var array
+     */
+    protected $default = [];
+
+    /**
      * Start this bad boy up!
      * 
      * @param Application $app 
@@ -23,6 +29,20 @@ class QuickRoutes {
     {
         $this->app = $app;
         $this->router = $app['router'];
+        $this->default = $this->app['config']->get('quickroutes::default');
+    }
+
+    /**
+     * Set Default
+     *
+     * Allows default routes to be overwritten from a certain point in time.
+     * 
+     * @param array $default
+     */
+    public function setDefault(array $default = [])
+    {
+        $this->default = $default;
+        return $this;
     }
 
     /**
@@ -110,7 +130,7 @@ class QuickRoutes {
     {
         return ! empty($default)
                ? $default
-               : $this->app['config']->get('quickroutes::default');
+               : $this->default;
     }
 
     /**

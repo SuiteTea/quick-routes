@@ -25,6 +25,8 @@
         }
     },
     "scripts": {
-        "post-install-cmd": "php artisan config:publish suitetea/quick-routes"
+        "post-package-install": [
+            "php artisan config:publish suitetea/quick-routes"
+        ]
     }
 }

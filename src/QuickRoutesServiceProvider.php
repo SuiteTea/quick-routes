@@ -6,7 +6,7 @@ class QuickRoutesServiceProvider extends ServiceProvider {
 
     public function boot()
     {
-        $this->package('suitetea/quickroutes', 'quickroutes', __DIR__);
+        $this->package('suitetea/quick-routes', 'quickroutes', __DIR__);
     }
 
     public function register()

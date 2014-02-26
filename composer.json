@@ -23,10 +23,5 @@
         "psr-4": {
             "SuiteTea\\QuickRoutes\\": "src/"
         }
-    },
-    "scripts": {
-        "post-package-install": [
-            "php artisan config:publish suitetea/quick-routes"
-        ]
     }
 }

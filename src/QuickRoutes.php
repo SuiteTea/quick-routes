@@ -33,6 +33,18 @@ class QuickRoutes {
     }
 
     /**
+     * Get Default
+     *
+     * Gets the default routes
+     * 
+     * @return array
+     */
+    public function getDefault()
+    {
+        return $this->default;
+    }
+
+    /**
      * Set Default
      *
      * Allows default routes to be overwritten from a certain point in time.

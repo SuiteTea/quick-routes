@@ -15,12 +15,6 @@ class QuickRoutes {
     protected $router;
 
     /**
-     * Quick Routes config
-     * @var array
-     */
-    protected $config = [];
-
-    /**
      * Start this bad boy up!
      * 
      * @param Application $app 
@@ -28,7 +22,6 @@ class QuickRoutes {
     public function __construct(Application $app)
     {
         $this->app = $app;
-        $this->config = $app['config']->get('quickroutes');
         $this->router = $app['router'];
     }
 
@@ -117,7 +110,7 @@ class QuickRoutes {
     {
         return ! empty($default)
                ? $default
-               : $this->config['default'];
+               : $app['config']->get('quickroutes::default');
     }
 
     /**

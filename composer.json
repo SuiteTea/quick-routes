@@ -1,0 +1,30 @@
+{
+    "name": "suitetea/quick-routes",
+    "description": "QuickRoutes simplifies and shortens mundane and repeated declaration of routes and controller methods.",
+    "version": "0.3.0",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.3.0",
+        "laravel/framework": ">=4.0.0"
+    },
+    "authors": [
+        {
+            "name": "Matt Cuyar",
+            "email": "matt@enctypeapparel.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Steven Wade",
+            "email": "stevenwadejr@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "SuiteTea\\QuickRoutes\\": "src/"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": "php artisan config:publish suitetea/quick-routes"
+    }
+}

@@ -100,7 +100,10 @@ class QuickRoutes {
      */
     protected function route($name, $routes, $default)
     {
-        $this->router->group(['prefix' => $name], function() use ($name, $routes, $default)
+        $prefix = $name;
+        $name = preg_replace('/[^A-Za-z0-9 ]{1,}/', '_', $name);
+        
+        $this->router->group(['prefix' => $prefix], function() use ($name, $routes, $default)
         {
             foreach ($routes as $route) {
                 if (! isset($default[$route])) {
@@ -194,7 +197,7 @@ class QuickRoutes {
      */
     protected function determineController($name, $route, $prefix)
     {
-        $controller = ucfirst($name).'Controller';
+        $controller = studly_case($name).'Controller';
         $method = camel_case($prefix.'_'.$route);
 
         return $controller.'@'.$method;

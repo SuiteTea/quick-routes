@@ -75,6 +75,24 @@ QuickRoutes::setDefault($set_2); // Register calls after this will use $set_2
 QuickRoutes::register('anotherroute', ['foo', 'bar']);
 ```
 
+---
+
+## New in 0.6.0
+
+Prefixed routes can now be passed. The prefix will be used to group the routes.
+
+Non alphanumeric characters in the route name are replaced with an underscore, and `studly_case` is used for the controller.
+
+Example:
+
+```
+QuickRoutes::register('user/groups', '*');
+```
+
+This will generate a route pointing to `UserGroupsController@someMethod`.
+
+This will also prefix the named routes with "user_groups". Ex: `user_groups.index`
+
 # Installation
 
 Via Composer
@@ -85,18 +103,6 @@ Via Composer
         "suitetea/quick-routes": "0.5.*"
     }
 }
-```
-
-Run update from Composer:
-
-```
-composer update
-```
-
-Add the service provider to the `app/config/app.php` providers array.
-
-```
-'SuiteTea\QuickRoutes\QuickRoutesServiceProvider',
 ```
 
 The default routes array should be in the following format:

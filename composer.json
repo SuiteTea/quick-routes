@@ -1,11 +1,8 @@
 {
     "name": "suitetea/quick-routes",
-    "type": "library",
     "description": "QuickRoutes simplifies and shortens mundane and repeated declaration of routes and controller methods.",
-    "keywords": ["laravel", "route"],
-    "homepage": "http://github.com/SuiteTea/quick-routes",
+    "version": "0.6.0",
     "license": "MIT",
-    "version": "0.5.0",
     "require": {
         "php": ">=5.3.0",
         "laravel/framework": ">=4.0.0"

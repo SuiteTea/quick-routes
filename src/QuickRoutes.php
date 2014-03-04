@@ -119,16 +119,22 @@ class QuickRoutes {
                 }
                 extract($default[$route]);
 
-                $method = isset($method) ? $method : 'get';
-
-                $route = $this->router->$method($pattern, [
-                    'as' => $this->determineRouteName($name, $route, $method),
-                    'uses' => $this->determineController($name, $route, $method)
-                ]);
-
-                if (isset($where)) {
-                    $route->where($where);
-                }
+                $methods = isset($methods) ? $methods : ['get'];
+				
+				if (!is_array($methods)) {
+					$methods = array($methods);
+				}
+				
+				foreach ($methods as $method) {
+					$compiled_route = $this->router->$method($pattern, [
+					 	'as' => $this->determineRouteName($name, $route, $method),
+                    	'uses' => $this->determineController($name, $route, $method)
+					]);
+					
+					if (isset($where)) {
+						 $compiled_route->where($where);
+					}
+				}
             }
         });
     }

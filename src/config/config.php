@@ -14,11 +14,11 @@ return [
      *     ],
      *     'create' => [
      *         'pattern' => 'create',
-     *         'method' => 'post'
+     *         'methods' => ['get','post']
      *     ],
      *     'edit' => [
      *         'pattern' => '{id}/edit',
-     *         'method' => 'post',
+     *         'method' => ['get','post'],
      *         'where' => ['id' => '[0-9]+']
      *     ]
      * ]

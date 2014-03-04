@@ -93,6 +93,11 @@ This will generate a route pointing to `UserGroupsController@someMethod`.
 
 This will also prefix the named routes with "user_groups". Ex: `user_groups.index`
 
+
+## New in 0.7.0
+
+You can now create multiple methods per route, just pass the methods parameter as an array.
+
 # Installation
 
 Via Composer
@@ -100,7 +105,7 @@ Via Composer
 ```
 {
     "require": {
-        "suitetea/quick-routes": "0.5.*"
+        "suitetea/quick-routes": "dev-develop"
     }
 }
 ```
@@ -114,12 +119,12 @@ $default_routes = [
    ],
    'create' => [
        'pattern' => 'create',
-       'method' => 'post'
+       'methods' => ['get','post']
    ],
    'edit' => [
        'pattern' => '{id}/edit',
        'where' => ['id' => '[0-9]+'],
-       'method' => 'post'
+       'methods' => ['get','post']
    ],
    'view' => [
        'pattern' => '{id}',

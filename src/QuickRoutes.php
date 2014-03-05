@@ -21,6 +21,12 @@ class QuickRoutes {
     protected $default = [];
 
     /**
+     * Temp Set
+     * @var array
+     */
+    protected $temp_set = [];
+
+    /**
      * Start this bad boy up!
      * 
      * @param Application $app 
@@ -57,6 +63,12 @@ class QuickRoutes {
         return $this;
     }
 
+    public function with(array $set = [])
+    {
+        $this->temp_set = $set;
+        return $this;
+    }
+
     /**
      * Register
      *
@@ -67,13 +79,8 @@ class QuickRoutes {
      * @param array $default Optional parameter to overwrite the default routes array
      * @return void
      */
-    public function register($name, $routes = [], $default = [])
+    public function register($name, $routes = null, $default = [])
     {
-        if (empty($routes)) {
-            trigger_error('No routes specified', E_USER_WARNING);
-            return null;
-        }
-
         $default = $this->determineDefault($default);
 
         if (empty($default)) {
@@ -135,6 +142,8 @@ class QuickRoutes {
 						 $compiled_route->where($where);
 					}
 				}
+
+                unset($methods);
             }
         });
     }
@@ -149,9 +158,14 @@ class QuickRoutes {
      */
     protected function determineDefault($default)
     {
-        return ! empty($default)
-               ? $default
-               : $this->default;
+        $default = ! empty($default)
+                   ? $default
+                   : $this->default;
+
+        $set = array_merge($default, $this->temp_set);
+        $this->temp_set = [];
+
+        return $set;
     }
 
     /**
@@ -166,8 +180,8 @@ class QuickRoutes {
      */
     protected function determineRoutes($routes, $default)
     {
-        $routes = is_string($routes) ? ['', $routes] : $routes;
-        return array_search('*', $routes)
+        $routes = $routes === '*' ? null : $routes;
+        return is_null($routes)
                ? array_keys($default)
                : $routes;
     }

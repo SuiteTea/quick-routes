@@ -77,21 +77,47 @@ QuickRoutes::register('anotherroute', ['foo', 'bar']);
 
 ---
 
-## New in 0.6.0
+## New in 0.8.0
 
-Prefixed routes can now be passed. The prefix will be used to group the routes.
+Fixed a bug where if a HTTP method wasn't specified, the previously declared method was used, resulting in unexpected and unwanted results.
 
-Non alphanumeric characters in the route name are replaced with an underscore, and `studly_case` is used for the controller.
-
-Example:
+The second parameter in the `register` method is now optional. If not set, all routes will be used by default. The exception to this is when overriding the default route set for a single instance. In this case, the asterisk ('*') may still be used.
 
 ```
-QuickRoutes::register('user/groups', '*');
+QuickRoutes::register('users'); // assumes all
+QuickRoutes::register('settings', '*', $settings_routes);
 ```
 
-This will generate a route pointing to `UserGroupsController@someMethod`.
+Introduced `with` method. Using `with` merges default routes with a set of routes given for a single instance.
 
-This will also prefix the named routes with "user_groups". Ex: `user_groups.index`
+For example, this: 
+
+```
+$default_routes = [
+    'index' => [
+        'pattern' => '/',
+    ],
+    'create' => [
+        'pattern' => 'create',
+        'methods' => ['get','post']
+    ]
+];
+
+$image_routes = [
+    'img_create' => [
+        'pattern' => 'create/image'
+        'methods' => ['post']
+    ]
+];
+
+QuickRoutes::register('users', '*', array_merge($default_routes, $image_routes));
+```
+
+is equivalent to this:
+
+```
+QuickRoutes::with($image_routes)->register('users');
+```
 
 
 ## New in 0.7.0

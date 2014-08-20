@@ -108,7 +108,7 @@ class QuickRoutes {
     protected function route($name, $routes, $default)
     {
         $prefix = $name;
-        $name = preg_replace('/[^A-Za-z0-9 ]{1,}/', '_', $name);
+        $name = preg_replace('/[^A-Za-z0-9- ]{1,}/', '_', $name);
         
         $this->router->group(['prefix' => $prefix], function() use ($name, $routes, $default)
         {

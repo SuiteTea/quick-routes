@@ -119,6 +119,18 @@ is equivalent to this:
 QuickRoutes::with($image_routes)->register('users');
 ```
 
+Also, you can define a custom uses value, including a Closure:
+
+$image_routes = [
+    'img_create' => [
+        'pattern' => 'create/image'
+        'methods' => ['post'],
+        'uses' => function() {
+            return Redirect::route('image.view');
+        }
+    ]
+];
+
 
 ## New in 0.7.0
 

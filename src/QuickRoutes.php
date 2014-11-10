@@ -199,7 +199,7 @@ class QuickRoutes {
      */
     protected function determineRouteName($name, $route, $method)
     {
-        $route_name = strtolower($name.'.'.$route);
+        $route_name = strtolower($name ? $name.'.'.$route : $route);
         return $method != 'get' ? $route_name.'.'.$method : $route_name;
     }
 

@@ -27,6 +27,12 @@ class QuickRoutes {
     protected $temp_set = [];
 
     /**
+     * Temp Controller Name
+     * @var string
+     */
+    protected $controller;
+
+    /**
      * Start this bad boy up!
      * 
      * @param Application $app 
@@ -70,6 +76,26 @@ class QuickRoutes {
     }
 
     /**
+     * Set a temporary controller name
+     *
+     * @param $controller
+     */
+    public function setController($controller)
+    {
+        $this->controller = (string)$controller;
+    }
+
+    /**
+     * Get the temporarily set controller
+     *
+     * @return string
+     */
+    public function getController()
+    {
+        return $this->controller;
+    }
+
+    /**
      * Register
      *
      * Registers the requested routes with the appropriate controller
@@ -91,6 +117,9 @@ class QuickRoutes {
         $routes = $this->determineRoutes($routes, $default);
 
         $this->route($name, $routes, $default);
+
+        // Remove a temporarily set controller name
+        $this->controller = null;
     }
 
     /**
@@ -131,6 +160,8 @@ class QuickRoutes {
 				if (!is_array($methods)) {
 					$methods = array($methods);
 				}
+
+
 
 				foreach ($methods as $method) {
 					$compiled_route = $this->router->$method($pattern, [
@@ -217,7 +248,7 @@ class QuickRoutes {
      */
     protected function determineController($name, $route, $prefix)
     {
-        $controller = studly_case($name).'Controller';
+        $controller = $this->controller ?: studly_case($name).'Controller';
         $method = camel_case($prefix.'_'.$route);
 
         return $controller.'@'.$method;

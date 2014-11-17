@@ -249,7 +249,7 @@ class QuickRoutes {
     protected function determineController($name, $route, $prefix)
     {
         $controller = $this->controller ?: studly_case($name).'Controller';
-        $method = camel_case($prefix.'_'.$route);
+        $method = camel_case($prefix.'_'.last(explode('.',$route)));
 
         return $controller.'@'.$method;
     }
